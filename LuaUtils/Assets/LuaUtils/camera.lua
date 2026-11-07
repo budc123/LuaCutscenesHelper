@@ -22,7 +22,14 @@ function camera.zoomChange(screenX, screenY, factor, time)
     coroutine.yield(level:ZoomAcross(vector2(screenX, screenY), factor, time))
 end
 
----Resets the zoom to the default level
+--Returns the zoom to default over a set time
+---@param time integer The time that it should take to return the zoom
+function camera.zoomReturn(time)
+    local level = getLevel()
+    coroutine.yield(level:ZoomBack(time))
+end
+
+---Snaps the zoom to the default level
 function camera.zoomReset()
     local level = getLevel()
     level:ResetZoom()
